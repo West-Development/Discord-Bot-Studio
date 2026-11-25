@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update source.json from latest release
         env:
@@ -56,6 +58,6 @@ jobs:
       - name: Commit & push updated source.json
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@://github.com"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add source.json
           git diff --staged --quiet || (git commit -m "chore: update source.json for latest release" && git push)
