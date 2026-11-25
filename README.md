@@ -5,6 +5,9 @@ A desktop app for building, testing, and running Discord bots visually without w
 ![License](https://shields.io)
 ![Platform](https://shields.io)
 ![Discord.js](https://shields.io)
+![Status](https://shields.io)
+
+> **Work in Progress:** Discord Bot Studio is actively being developed and updated. Some features are still experimental, so you may run into occasional bugs or rough edges. If something breaks, feel free to open an [Issue](https://github.com) with details.
 
 ---
 
@@ -22,17 +25,12 @@ A desktop app for building, testing, and running Discord bots visually without w
 
 ### Option 1: Standalone Download (Recommended)
 1. Head over to the [**Releases**](https://github.com) page.
-2. Download the latest **`Discord Bot Studio-1.0.0-win.zip`** or **`Discord Bot Studio 1.0.0.exe`**.
-3. Extract and run `Discord Bot Studio.exe`.
+2. Download the latest **`Discord.Bot.Studio-1.0.0-win.zip`** or **`Discord Bot Studio 1.0.0.exe`**.
+3. Extract the folder and run `Discord Bot Studio.exe`.
 
-### Option 2: Hydra Launcher
-1. Open Hydra Launcher and go to **Settings → Download Sources → Add Source**.
-2. Paste the raw source URL:
-   ```text
-   https://githubusercontent.com
-   ```
+*(Note: Because the app is not code-signed yet, Windows SmartScreen may show a warning on first launch—click **More info → Run anyway**.)*
 
-### Option 3: Run from Source
+### Option 2: Run from Source
 ```bash
 git clone https://github.com
 cd Discord-Bot-Studio
