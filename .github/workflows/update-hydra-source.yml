@@ -1,0 +1,61 @@
+name: Auto-Update Hydra source.json
+
+on:
+  release:
+    types: [published, edited]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update source.json from latest release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          node -e '
+            const fs = require("fs");
+            (async () => {
+              const res = await fetch(`https://github.com{process.env.REPO}/releases/latest`, {
+                headers: {
+                  "Authorization": `Bearer ${process.env.GH_TOKEN}`,
+                  "User-Agent": "Hydra-Source-Updater"
+                }
+              });
+              if (!res.ok) throw new Error("Failed to fetch latest release: " + res.status);
+              const rel = await res.json();
+              const assets = Array.isArray(rel.assets) ? rel.assets : [];
+              const asset = assets.find(a => a.name.endsWith(".zip")) || assets[0];
+              if (!asset) throw new Error("No release asset found.");
+
+              const sizeMB = (asset.size / (1024 * 1024)).toFixed(1) + " MB";
+              const sourceJson = {
+                name: "WestDevs Official Source",
+                downloads: [
+                  {
+                    title: `Discord Bot Studio (${rel.tag_name})`,
+                    uris: [asset.browser_download_url],
+                    uploadDate: rel.published_at || new Date().toISOString(),
+                    fileSize: sizeMB
+                  }
+                ]
+              };
+
+              fs.writeFileSync("source.json", JSON.stringify(sourceJson, null, 2) + "\n");
+              console.log("Updated source.json ->", asset.browser_download_url, sizeMB);
+            })();
+          '
+
+      - name: Commit & push updated source.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@://github.com"
+          git add source.json
+          git diff --staged --quiet || (git commit -m "chore: update source.json for latest release" && git push)

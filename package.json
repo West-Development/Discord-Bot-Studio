@@ -37,6 +37,7 @@
     "files": [
       "electron/**/*",
       "Base/**/*",
+      ".github/**/*",
       "package.json",
       "package-lock.json",
       "source.json",

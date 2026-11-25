@@ -47,18 +47,24 @@ git rm -rf --cached Base/node_modules >nul 2>&1
 
 :: Ask for a commit message
 set /p MSG="Enter commit message (press Enter for default): "
-if "%MSG%"=="" set MSG=Upload Discord Bot Studio source code
+if "%MSG%"=="" set MSG=Update Discord Bot Studio source code
 
 echo.
 echo Staging files...
 git add .
 
-echo Committing changes...
-git commit -m "%MSG%"
+:: Only commit if there are staged changes
+git diff --staged --quiet
+if %errorlevel%==0 (
+  echo No new file changes to commit.
+) else (
+  echo Committing changes...
+  git commit -m "%MSG%"
+)
 
 echo.
-echo Pulling existing README and LICENSE from GitHub...
-git pull origin main --allow-unrelated-histories --no-edit
+echo Syncing cleanly with GitHub (main)...
+git pull --rebase origin main
 
 echo.
 echo Pushing to GitHub (main)...
