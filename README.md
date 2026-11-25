@@ -2,11 +2,6 @@
 
 A desktop app for building, testing, and running Discord bots visually without writing boilerplate code. Powered by Electron and discord.js v14.
 
-![License](https://shields.io)
-![Platform](https://shields.io)
-![Discord.js](https://shields.io)
-![Status](https://shields.io)
-
 > **Work in Progress:** Discord Bot Studio is actively being developed and updated. Some features are still experimental, so you may run into occasional bugs or rough edges. If something breaks, feel free to open an [Issue](https://github.com) with details.
 
 ---
