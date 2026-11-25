@@ -19,7 +19,7 @@ A desktop app for building, testing, and running Discord bots visually without w
 ## Download & Install
 
 ### Option 1: Standalone Download (Recommended)
-1. Head over to the [**Releases**](https://github.com) page.
+1. Head over to the **Releases** page.
 2. Download the latest **`Discord.Bot.Studio-1.0.0-win.zip`** or **`Discord Bot Studio 1.0.0.exe`**.
 3. Extract the folder and run `Discord Bot Studio.exe`.
 
@@ -38,7 +38,7 @@ npm start
 ## Quick Start
 
 1. Open **Discord Bot Studio** and click **+ Create New Bot**.
-2. Go to the **Settings** tab and paste your **Bot Token** and **Client ID** from the [Discord Developer Portal](https://discord.com).
+2. Go to the **Settings** tab and paste your **Bot Token** and **Client ID** from the [Discord Developer Portal][(https://discord.com)](https://discord.com/developers/applications).
 3. Build your commands and events in the **Commands** and **Events** tabs.
 4. Click **Start Bot** in the top-right corner.
 
