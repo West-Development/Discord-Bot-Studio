@@ -38,7 +38,7 @@ npm start
 ## Quick Start
 
 1. Open **Discord Bot Studio** and click **+ Create New Bot**.
-2. Go to the **Settings** tab and paste your **Bot Token** and **Client ID** from the [Discord Developer Portal][(https://discord.com)](https://discord.com/developers/applications).
+2. Go to the **Settings** tab and paste your **Bot Token** and **Client ID** from the [(Discord Developer Portal)](https://discord.com/developers/applications).
 3. Build your commands and events in the **Commands** and **Events** tabs.
 4. Click **Start Bot** in the top-right corner.
 
