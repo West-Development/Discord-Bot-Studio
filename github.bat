@@ -2,7 +2,10 @@
 title Push Discord Bot Studio to GitHub
 cd /d "%~dp0"
 
-set REPO_URL=https://github.com
+set GH_HOST=github.com
+set GH_ORG=West-Development
+set GH_REPO=Discord-Bot-Studio
+set REPO_URL=https://%GH_HOST%/%GH_ORG%/%GH_REPO%.git
 
 echo ============================================
 echo   Uploading Discord Bot Studio to GitHub
@@ -28,11 +31,11 @@ if not exist ".git" (
   git branch -M main
 )
 
-:: Always reset origin to the exact .git URL
+:: Reset origin using the full assembled URL
 git remote remove origin >nul 2>&1
 git remote add origin "%REPO_URL%"
 
-:: Ensure Git user name & email are set locally so commit never fails
+:: Ensure local Git identity is configured
 git config user.name >nul 2>&1 || git config user.name "WestDevs"
 git config user.email >nul 2>&1 || git config user.email "westdevs@users.noreply.github.com"
 
