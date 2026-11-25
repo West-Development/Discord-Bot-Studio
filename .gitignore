@@ -1,0 +1,7 @@
+node_modules/
+Base/node_modules/
+Projects/
+dist/
+.env
+Base/.env
+*.log

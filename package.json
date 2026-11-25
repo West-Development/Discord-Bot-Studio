@@ -1,0 +1,54 @@
+{
+  "name": "discord-bot-studio",
+  "version": "1.0.0",
+  "description": "Visual Electron-based Discord Bot Builder powered by discord.js v14",
+  "author": "WestDevs",
+  "license": "Apache-2.0",
+  "main": "electron/main.js",
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "discord-js",
+    "bot-maker",
+    "electron"
+  ],
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable zip",
+    "copy": "copy \"dist\\win-unpacked\\Discord Bot Studio.exe\" \"Discord Bot Studio Portable.exe\""
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.2.0",
+    "discord.js": "^14.28.1",
+    "dotenv": "^18.0.10"
+  },
+  "devDependencies": {
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.westdevs.discordbotstudio",
+    "productName": "Discord Bot Studio",
+    "asar": false,
+    "afterPack": "scripts/afterPack.js",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*",
+      "Base/**/*",
+      "package.json",
+      "package-lock.json",
+      "source.json",
+      "LICENSE",
+      "!**/*.map"
+    ],
+    "win": {
+      "icon": "electron/icon.png",
+      "target": [
+        "portable",
+        "zip"
+      ]
+    }
+  }
+}

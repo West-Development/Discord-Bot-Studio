@@ -1,0 +1,5 @@
+{
+    "bot_ready": "Bot is ready!",
+    "command_executed": "Command {command} executed.",
+    "error_occurred": "An error occurred: {message}"
+}
