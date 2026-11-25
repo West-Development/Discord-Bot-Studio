@@ -25,9 +25,10 @@ jobs:
           node -e '
             const fs = require("fs");
             (async () => {
-              const res = await fetch(`https://github.com{process.env.REPO}/releases/latest`, {
+              const apiUrl = "https://" + "://github.com" + process.env.REPO + "/releases/latest";
+              const res = await fetch(apiUrl, {
                 headers: {
-                  "Authorization": `Bearer ${process.env.GH_TOKEN}`,
+                  "Authorization": "Bearer " + process.env.GH_TOKEN,
                   "User-Agent": "Hydra-Source-Updater"
                 }
               });
@@ -42,7 +43,7 @@ jobs:
                 name: "WestDevs Official Source",
                 downloads: [
                   {
-                    title: `Discord Bot Studio (${rel.tag_name})`,
+                    title: "Discord Bot Studio (" + rel.tag_name + ")",
                     uris: [asset.browser_download_url],
                     uploadDate: rel.published_at || new Date().toISOString(),
                     fileSize: sizeMB
@@ -58,6 +59,6 @@ jobs:
       - name: Commit & push updated source.json
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@://github.com"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add source.json
           git diff --staged --quiet || (git commit -m "chore: update source.json for latest release" && git push)
