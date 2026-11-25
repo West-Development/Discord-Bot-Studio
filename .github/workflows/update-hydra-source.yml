@@ -34,7 +34,7 @@ jobs:
               if (!res.ok) throw new Error("Failed to fetch latest release: " + res.status);
               const rel = await res.json();
               const assets = Array.isArray(rel.assets) ? rel.assets : [];
-              const asset = assets.find(a => a.name.endsWith(".zip")) || assets[0];
+              const asset = assets.find(a => a.name.endsWith(".zip")) || assets.at(0);
               if (!asset) throw new Error("No release asset found.");
 
               const sizeMB = (asset.size / (1024 * 1024)).toFixed(1) + " MB";
@@ -58,6 +58,6 @@ jobs:
       - name: Commit & push updated source.json
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@://github.com"
           git add source.json
           git diff --staged --quiet || (git commit -m "chore: update source.json for latest release" && git push)
