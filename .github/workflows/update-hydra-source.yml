@@ -20,12 +20,13 @@ jobs:
       - name: Update source.json from latest release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          API_URL: ${{ github.api_url }}
           REPO: ${{ github.repository }}
         run: |
           node -e '
             const fs = require("fs");
             (async () => {
-              const apiUrl = "https://" + "://github.com" + process.env.REPO + "/releases/latest";
+              const apiUrl = process.env.API_URL + "/repos/" + process.env.REPO + "/releases/latest";
               const res = await fetch(apiUrl, {
                 headers: {
                   "Authorization": "Bearer " + process.env.GH_TOKEN,
@@ -59,6 +60,6 @@ jobs:
       - name: Commit & push updated source.json
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@://github.com"
           git add source.json
           git diff --staged --quiet || (git commit -m "chore: update source.json for latest release" && git push)
